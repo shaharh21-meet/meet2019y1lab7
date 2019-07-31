@@ -19,9 +19,9 @@ SQUARE_SIZE = 20
 START_LENGTH = 7
 TIME_STEP = 100
 
-#def score_quit:
- #   print("Your score is " + len(stamp_list))
-  #  quit()
+def score_quit():
+    print("Your score is {}".format(len(stamp_list)))
+    quit()
 
 
 #Initialize lists
@@ -36,13 +36,19 @@ snake.shape("square")
 
 #Hide the turtle object (it's an arrow - we don't need to see it)
 turtle.hideturtle()
+turtle.register_shape("zach(1).gif")
+turtle.register_shape("kripesh.gif")
+turtle.register_shape("bassel.gif")
+choices = ["zach(1).gif", "kripesh.gif", "bassel.gif"]
+snake.shape(random.choice(choices))
 
 #Function to draw a part of the snake on the screen
 
 def new_stamp():
     snake_pos = snake.pos() #Get snake’s position
     #Append the position tuple to pos_list
-    pos_list.append(snake_pos) 
+    pos_list.append(snake_pos)
+    snake.shape(random.choice(choices))    
     #snake.stamp() returns a stamp ID. Save it in some variable         
     snake_stamp = snake.stamp()
     #append that stamp ID to stamp_list.     
@@ -190,7 +196,7 @@ def move_snake():
     elif snake.pos() in pos_list[0:-1]:
         print("DEADDDD")
 
-        quit()
+        score_quit()
     #HINT: This if statement may be useful for Part 8
 
     
@@ -209,18 +215,20 @@ def move_snake():
     # right edge.
     if new_x_pos >= RIGHT_EDGE:
         print("You hit the right edge! Game over!")
-        quit()
+        score_quit()
 
     elif new_x_pos <= LEFT_EDGE:
         print("You hit the left edge! Game over!")
-        quit()
+        score_quit()
 
     elif new_y_pos >= UP_EDGE:
         print("You hit the upper edge! Game over!")
-        quit()
+        score
+        _quit()
     elif new_y_pos <= DOWN_EDGE:
         print("You hit the down edge! Game over!")
-        quit()
+        score_quit()
+    
 
 
     if len(food_stamps) <= 6:
